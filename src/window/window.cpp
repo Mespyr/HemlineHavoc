@@ -1,13 +1,12 @@
 #include "window.hpp"
 
-Window::Window(std::ostream& log, const std::string& name, uint32_t width,
+Window::Window(const std::string& name, std::ostream& log, uint32_t width,
                uint32_t height)
-    : name(name), WINDOW_WIDTH(width), WINDOW_HEIGHT(height), log(log) {
-    if (!create_window() || !create_renderer() || !create_game_texture() ||
-        !create_scanline_texture()) {
-        quit = true;
-        return;
-    }
+    : name(name), log(log), WINDOW_WIDTH(width), WINDOW_HEIGHT(height) {
+    create_window();
+    create_renderer();
+    create_game_texture();
+    create_scanline_texture();
 }
 
 void Window::handle_events() {
