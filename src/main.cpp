@@ -26,7 +26,7 @@ int main() {
         window.begin_render();
         window.draw_texture(tree, {160, 90}, 100, 100,
                             {0, 0, tree.get_width(), tree.get_height()});
-        window.draw_texture(block, {20, 20}, 20, 20,
+        window.draw_texture(block, {-10, 20}, 20, 20,
                             {0, 0, block.get_width(), block.get_height()});
 
         window.end_render();
