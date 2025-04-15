@@ -12,7 +12,7 @@ int main() {
     Window window("Hemline Havoc", log, 1280, 720);
     if (!window) exit(1);
 
-    // file texture
+    // texture from a file
     Texture tree = window.create_texture("tree.png");
     // create texture
     uint32_t* pixels =

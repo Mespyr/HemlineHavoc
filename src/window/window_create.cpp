@@ -18,8 +18,8 @@ void Window::create_renderer() {
         quit = true;
         return;
     }
-	// turn on vsync
-	SDL_SetRenderVSync(renderer.get(), SDL_RENDERER_VSYNC_ADAPTIVE);
+    // turn on vsync
+    SDL_SetRenderVSync(renderer.get(), SDL_RENDERER_VSYNC_ADAPTIVE);
     // renderer settings
     SDL_SetRenderDrawBlendMode(renderer.get(), SDL_BLENDMODE_BLEND);
 }
@@ -92,7 +92,7 @@ Texture Window::create_texture(const uint32_t* pixels, float width,
     SDL_Texture* texture_ptr =
         SDL_CreateTexture(renderer.get(), SDL_PIXELFORMAT_RGBA8888,
                           SDL_TEXTUREACCESS_STREAMING, width, height);
-	SDL_UpdateTexture(texture_ptr, nullptr, pixels, sizeof(uint32_t));
+    SDL_UpdateTexture(texture_ptr, nullptr, pixels, sizeof(uint32_t));
     // necessary modes
     SDL_SetTextureScaleMode(texture_ptr, SDL_SCALEMODE_NEAREST);
     SDL_SetTextureBlendMode(texture_ptr, SDL_BLENDMODE_BLEND);
