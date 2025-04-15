@@ -18,6 +18,8 @@ void Window::create_renderer() {
         quit = true;
         return;
     }
+	// turn on vsync
+	SDL_SetRenderVSync(renderer.get(), SDL_RENDERER_VSYNC_ADAPTIVE);
     // renderer settings
     SDL_SetRenderDrawBlendMode(renderer.get(), SDL_BLENDMODE_BLEND);
 }
