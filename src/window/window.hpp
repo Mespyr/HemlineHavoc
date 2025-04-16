@@ -37,7 +37,7 @@ class Window {
     // window resolution
     const uint32_t WINDOW_WIDTH, WINDOW_HEIGHT;
     // native game resolution
-    static const uint32_t GAME_WIDTH = 320, GAME_HEIGHT = 180;
+    static const uint32_t GAME_WIDTH = 640, GAME_HEIGHT = 360;
 
     // SDL behind the scenes
     std::unique_ptr<SDL_Window, SDL_Deleter>   window;
