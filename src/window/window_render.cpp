@@ -4,7 +4,7 @@ void Window::begin_render() {
     // set the target to the game_texture so
     // that everything drawn is put on it
     SDL_SetRenderTarget(renderer.get(), game_texture.get());
-    SDL_SetRenderDrawColor(renderer.get(), 14, 14, 14, 255);
+    SDL_SetRenderDrawColor(renderer.get(), 20, 20, 20, 255);
     SDL_RenderClear(renderer.get());
 }
 
