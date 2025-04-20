@@ -1,45 +1,20 @@
 #include "window.hpp"
 
-void Window::create_window() {
-    window = std::unique_ptr<SDL_Window, SDL_Deleter>(
-        SDL_CreateWindow(name.c_str(), WINDOW_WIDTH, WINDOW_HEIGHT, 0),
-        SDL_Deleter());
-    if (window == nullptr) {
-        log_sdl_error(log, "SDL_CreateWindow");
-        quit = true;
-    }
-}
-
-void Window::create_renderer() {
-    renderer = std::unique_ptr<SDL_Renderer, SDL_Deleter>(
-        SDL_CreateRenderer(window.get(), nullptr), SDL_Deleter());
-    if (renderer == nullptr) {
-        log_sdl_error(log, "SDL_CreateRenderer");
-        quit = true;
-        return;
-    }
-    // turn on vsync
-    SDL_SetRenderVSync(renderer.get(), SDL_RENDERER_VSYNC_ADAPTIVE);
+void Window::create_window_and_renderer() {
+	SDL_Window* window_ptr = nullptr;
+	SDL_Renderer* renderer_ptr = nullptr;
+	if (!SDL_CreateWindowAndRenderer(name.c_str(), WINDOW_WIDTH, WINDOW_HEIGHT, 0, &window_ptr, &renderer_ptr)) {
+		log_sdl_error(log, "SDL_CreateWindowAndRenderer");
+		quit = true;
+		return;
+	}
     // renderer settings
-    SDL_SetRenderDrawBlendMode(renderer.get(), SDL_BLENDMODE_BLEND);
-}
-
-void Window::create_game_texture() {
-    // create the games's texture at native resolution
-    // using TEXTUREACCESS_TARGET to use renderer to draw
-    SDL_Texture* game_texture_ptr =
-        SDL_CreateTexture(renderer.get(), SDL_PIXELFORMAT_RGBA8888,
-                          SDL_TEXTUREACCESS_TARGET, GAME_WIDTH, GAME_HEIGHT);
-    if (game_texture_ptr == nullptr) {
-        log_sdl_error(log, "SDL_CreateTexture");
-        quit = true;
-        return;
-    }
-    game_texture = std::unique_ptr<SDL_Texture, SDL_Deleter>(game_texture_ptr,
-                                                             SDL_Deleter());
-    // game texture settings
-    SDL_SetTextureScaleMode(game_texture.get(), SDL_SCALEMODE_NEAREST);
-    SDL_SetTextureBlendMode(game_texture.get(), SDL_BLENDMODE_BLEND);
+    SDL_SetRenderVSync(renderer_ptr, SDL_RENDERER_VSYNC_ADAPTIVE);
+    SDL_SetRenderDrawBlendMode(renderer_ptr, SDL_BLENDMODE_BLEND);
+	SDL_SetRenderLogicalPresentation(renderer_ptr, GAME_WIDTH, GAME_HEIGHT, SDL_LOGICAL_PRESENTATION_LETTERBOX);
+	// save to class
+	window = std::unique_ptr<SDL_Window, SDL_Deleter>(window_ptr, SDL_Deleter());
+	renderer = std::unique_ptr<SDL_Renderer, SDL_Deleter>(renderer_ptr, SDL_Deleter());
 }
 
 void Window::create_scanline_texture() {

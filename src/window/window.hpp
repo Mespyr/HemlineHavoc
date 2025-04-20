@@ -23,8 +23,8 @@ class Window {
     Texture create_texture(const std::string& file_path);
     Texture create_texture(const uint32_t* pixels, float width, float height);
 
-    void begin_render();
-    void end_render();
+    void clear();
+    void render();
 
     void draw_texture(Texture& texture, SDL_FPoint position, float width,
                       float height, SDL_FRect source);
@@ -36,17 +36,14 @@ class Window {
 
     // window resolution
     const uint32_t WINDOW_WIDTH, WINDOW_HEIGHT;
-    // native game resolution
+    // native game resolution (for upscaling)
     static const uint32_t GAME_WIDTH = 640, GAME_HEIGHT = 360;
 
     // SDL behind the scenes
     std::unique_ptr<SDL_Window, SDL_Deleter>   window;
     std::unique_ptr<SDL_Renderer, SDL_Deleter> renderer;
-    std::unique_ptr<SDL_Texture, SDL_Deleter>  game_texture;
     std::unique_ptr<SDL_Texture, SDL_Deleter>  scanline_texture;
 
-    void create_window();
-    void create_renderer();
-    void create_game_texture();
+    void create_window_and_renderer();
     void create_scanline_texture();
 };

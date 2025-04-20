@@ -1,18 +1,11 @@
 #include "window.hpp"
 
-void Window::begin_render() {
-    // set the target to the game_texture so
-    // that everything drawn is put on it
-    SDL_SetRenderTarget(renderer.get(), game_texture.get());
+void Window::clear() {
     SDL_SetRenderDrawColor(renderer.get(), 20, 20, 20, 255);
     SDL_RenderClear(renderer.get());
 }
 
-void Window::end_render() {
-    // go back to rendering directly to the window
-    SDL_SetRenderTarget(renderer.get(), nullptr);
-    SDL_RenderClear(renderer.get());
-    SDL_RenderTexture(renderer.get(), game_texture.get(), nullptr, nullptr);
+void Window::render() {
     SDL_RenderTexture(renderer.get(), scanline_texture.get(), nullptr, nullptr);
     SDL_RenderPresent(renderer.get());
 }
