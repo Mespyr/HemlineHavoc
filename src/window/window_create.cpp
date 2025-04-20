@@ -1,20 +1,24 @@
 #include "window.hpp"
 
 void Window::create_window_and_renderer() {
-	SDL_Window* window_ptr = nullptr;
-	SDL_Renderer* renderer_ptr = nullptr;
-	if (!SDL_CreateWindowAndRenderer(name.c_str(), WINDOW_WIDTH, WINDOW_HEIGHT, 0, &window_ptr, &renderer_ptr)) {
-		log_sdl_error(log, "SDL_CreateWindowAndRenderer");
-		quit = true;
-		return;
-	}
+    SDL_Window*   window_ptr = nullptr;
+    SDL_Renderer* renderer_ptr = nullptr;
+    if (!SDL_CreateWindowAndRenderer(name.c_str(), WINDOW_WIDTH, WINDOW_HEIGHT,
+                                     0, &window_ptr, &renderer_ptr)) {
+        log_sdl_error(log, "SDL_CreateWindowAndRenderer");
+        quit = true;
+        return;
+    }
     // renderer settings
     SDL_SetRenderVSync(renderer_ptr, SDL_RENDERER_VSYNC_ADAPTIVE);
     SDL_SetRenderDrawBlendMode(renderer_ptr, SDL_BLENDMODE_BLEND);
-	SDL_SetRenderLogicalPresentation(renderer_ptr, GAME_WIDTH, GAME_HEIGHT, SDL_LOGICAL_PRESENTATION_LETTERBOX);
-	// save to class
-	window = std::unique_ptr<SDL_Window, SDL_Deleter>(window_ptr, SDL_Deleter());
-	renderer = std::unique_ptr<SDL_Renderer, SDL_Deleter>(renderer_ptr, SDL_Deleter());
+    SDL_SetRenderLogicalPresentation(renderer_ptr, GAME_WIDTH, GAME_HEIGHT,
+                                     SDL_LOGICAL_PRESENTATION_LETTERBOX);
+    // save to class
+    window =
+        std::unique_ptr<SDL_Window, SDL_Deleter>(window_ptr, SDL_Deleter());
+    renderer =
+        std::unique_ptr<SDL_Renderer, SDL_Deleter>(renderer_ptr, SDL_Deleter());
 }
 
 void Window::create_scanline_texture() {

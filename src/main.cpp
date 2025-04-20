@@ -22,24 +22,25 @@ int main() {
     // Texture block = window.create_texture(pixels, 20, 20);
     // free(pixels);
 
-	SDL_FPoint pos = {10.0, 10.0};
+    SDL_FPoint pos = {10.0, 10.0};
 
-	uint64_t NOW = SDL_GetPerformanceCounter();
-	uint64_t LAST = 0;
-	double delta_time = 0;
+    uint64_t NOW = SDL_GetPerformanceCounter();
+    uint64_t LAST = 0;
+    double   delta_time = 0;
 
     do {
-		LAST = NOW;
-		NOW = SDL_GetPerformanceCounter();
-		delta_time = (double)((NOW - LAST)*1000 / (double)SDL_GetPerformanceFrequency() );
+        LAST = NOW;
+        NOW = SDL_GetPerformanceCounter();
+        delta_time = (double)((NOW - LAST) * 1000 /
+                              (double)SDL_GetPerformanceFrequency());
 
         window.handle_events();
         window.clear();
         window.draw_texture(logo, pos, 240, 135,
                             {0, 0, logo.get_width(), logo.get_height()});
 
-		pos.x += 0.01 * delta_time;
-		pos.y += 0.01 * delta_time;
+        pos.x += 0.01 * delta_time;
+        pos.y += 0.01 * delta_time;
 
         window.render();
     } while (window);
