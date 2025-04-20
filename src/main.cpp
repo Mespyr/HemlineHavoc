@@ -22,7 +22,7 @@ int main() {
     // Texture block = window.create_texture(pixels, 20, 20);
     // free(pixels);
 
-    SDL_FPoint pos = {10.0, 10.0};
+    SDL_FRect pos = {10.0, 10.0, 240.0, 135.0};
 
     uint64_t NOW = SDL_GetPerformanceCounter();
     uint64_t LAST = 0;
@@ -36,11 +36,10 @@ int main() {
 
         window.handle_events();
         window.clear();
-        window.draw_texture(logo, pos, 240, 135,
-                            {0, 0, logo.get_width(), logo.get_height()});
+        window.draw_texture(logo, pos, {0, 0, logo.get_width(), logo.get_height()});
 
         pos.x += 0.01 * delta_time;
-        pos.y += 0.01 * delta_time;
+        pos.y += 0.02 * delta_time;
 
         window.render();
     } while (window);

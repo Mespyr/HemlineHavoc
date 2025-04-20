@@ -10,8 +10,6 @@ void Window::render() {
     SDL_RenderPresent(renderer.get());
 }
 
-void Window::draw_texture(Texture &texture, SDL_FPoint position, float width,
-                          float height, SDL_FRect src_rect) {
-    SDL_FRect dest_rect = {position.x, position.y, width, height};
+void Window::draw_texture(Texture &texture, SDL_FRect dest_rect, SDL_FRect src_rect) {
     SDL_RenderTexture(renderer.get(), texture.get_ptr(), &src_rect, &dest_rect);
 }
