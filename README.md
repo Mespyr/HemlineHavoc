@@ -1,3 +1,3 @@
-<img src="assets/logo.png" alt="# Hemline Havoc" style="width: 640px; height: 360px; image-rendering: pixelated;">
+<img src="assets/logo_upscaled.png" alt="# Hemline Havoc">
 
 A pair of sentient pants has beef with the fashion overlords.
