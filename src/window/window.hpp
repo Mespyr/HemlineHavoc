@@ -26,7 +26,8 @@ class Window {
     void clear();
     void render();
 
-    void draw_texture(Texture& texture, SDL_FRect dest_rect, SDL_FRect src_rect);
+    void draw_texture(Texture& texture, SDL_FRect dest_rect,
+                      SDL_FRect src_rect);
 
   private:
     bool               quit = false;  // whether to close window or not

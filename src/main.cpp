@@ -36,7 +36,8 @@ int main() {
 
         window.handle_events();
         window.clear();
-        window.draw_texture(logo, pos, {0, 0, logo.get_width(), logo.get_height()});
+        window.draw_texture(logo, pos,
+                            {0, 0, logo.get_width(), logo.get_height()});
 
         pos.x += 0.01 * delta_time;
         pos.y += 0.02 * delta_time;
