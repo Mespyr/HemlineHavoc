@@ -18,7 +18,7 @@ class Window {
 
     explicit operator bool() const { return !quit; }
 
-    void handle_events();
+    void update_events();
 
     Texture create_texture(const std::string& file_path);
     Texture create_texture(const uint32_t* pixels, float width, float height);

@@ -27,20 +27,29 @@ int main() {
     uint64_t LAST = 0;
     double   delta_time = 0;
 
+    const bool *kbd_state = SDL_GetKeyboardState(NULL);
+
     do {
         LAST = NOW;
         NOW = SDL_GetPerformanceCounter();
-        delta_time = (double)((NOW - LAST) * 1000 /
-                              (double)SDL_GetPerformanceFrequency());
+        delta_time = static_cast<double>(
+            ((NOW - LAST) * 1000) /
+            static_cast<double>(SDL_GetPerformanceFrequency()));
 
-        window.handle_events();
+        window.update_events();
+
+		if (kbd_state[SDL_SCANCODE_W])
+			pos.y -= 0.01 * delta_time;
+		if (kbd_state[SDL_SCANCODE_S])
+			pos.y += 0.01 * delta_time;
+		if (kbd_state[SDL_SCANCODE_A])
+			pos.x -= 0.01 * delta_time;
+		if (kbd_state[SDL_SCANCODE_D])
+			pos.x += 0.01 * delta_time;
+
         window.clear();
         window.draw_texture(logo, pos,
                             {0, 0, logo.get_width(), logo.get_height()});
-
-        pos.x += 0.01 * delta_time;
-        pos.y += 0.02 * delta_time;
-
         window.render();
     } while (window);
 
