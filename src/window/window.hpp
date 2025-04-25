@@ -27,7 +27,7 @@ class Window {
     void render();
 
     void draw_texture(Texture& texture, SDL_FRect dest_rect,
-                      SDL_FRect src_rect);
+                      SDL_FRect src_rect, SDL_FlipMode flip = SDL_FLIP_NONE);
 
   private:
     bool               quit = false;  // whether to close window or not

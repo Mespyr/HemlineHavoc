@@ -22,7 +22,6 @@ int main() {
     // Texture block = window.create_texture(pixels, 20, 20);
     // free(pixels);
 
-
     SDL_FRect pos = {320-16, 180-16, 32, 32};
     SDL_FRect src = {0, 0, 32, 32};
 	double animation_diff = 0.0;
@@ -56,11 +55,11 @@ int main() {
                             {0, 0, logo.get_width(), logo.get_height()});
 
 		// animate
-        window.draw_texture(pants, pos, src);
+        window.draw_texture(pants, pos, src, SDL_FLIP_NONE);
 		animation_diff += delta_time;
 		if (animation_diff > 200.0) {
 			animation_diff = 0.0;
-			if (src.x != 160) src.x += 32;
+			if (src.x != 288) src.x += 32;
 			else src.x = 0;
 		}
 

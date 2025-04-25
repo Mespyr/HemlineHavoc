@@ -11,6 +11,6 @@ void Window::render() {
 }
 
 void Window::draw_texture(Texture &texture, SDL_FRect dest_rect,
-                          SDL_FRect src_rect) {
-    SDL_RenderTexture(renderer.get(), texture.get_ptr(), &src_rect, &dest_rect);
+                          SDL_FRect src_rect, SDL_FlipMode flip) {
+    SDL_RenderTextureRotated(renderer.get(), texture.get_ptr(), &src_rect, &dest_rect, 0, nullptr, flip);
 }
