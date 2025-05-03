@@ -39,8 +39,13 @@ int main() {
             ((NOW - LAST) * 1000) /
             static_cast<double>(SDL_GetPerformanceFrequency()));
 
-        window.update_events();
-
+		// player animation
+		animation_diff += delta_time;
+		if (animation_diff > 200.0) {
+			animation_diff = 0.0;
+			if (src.x != 288) src.x += 32;
+			else src.x = 0;
+		}
 		if (kbd_state[SDL_SCANCODE_W])
 			pos.y -= 0.05 * delta_time;
 		if (kbd_state[SDL_SCANCODE_S])
@@ -50,19 +55,13 @@ int main() {
 		if (kbd_state[SDL_SCANCODE_D])
 			pos.x += 0.05 * delta_time;
 
+        window.update_events();
+
         window.clear();
         window.draw_texture(logo, {10.0, 10.0, 240.0, 135.0},
                             {0, 0, logo.get_width(), logo.get_height()});
 
-		// animate
         window.draw_texture(pants, pos, src, SDL_FLIP_NONE);
-		animation_diff += delta_time;
-		if (animation_diff > 200.0) {
-			animation_diff = 0.0;
-			if (src.x != 288) src.x += 32;
-			else src.x = 0;
-		}
-
         window.render();
     } while (window);
 
