@@ -9,7 +9,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 if(NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE Release CACHE STRING "Choose the type of build." FORCE)
 endif()
-set(VALID_BUILD_TYPES Debug Release RelWithDebInfo MinSizeRel)
+set(VALID_BUILD_TYPES Debug Release)
 set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS ${VALID_BUILD_TYPES})
 
 # Enable FetchContent

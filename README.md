@@ -29,6 +29,8 @@ cpack
 ### Make
 There is a Makefile in the repository for Linux users who have SDL3 and SDL3_image installed on their systems. To use it, all you need to do is run:
 ```sh
-make -j$(nproc)
+make
 ```
 This is not recommended as the setup with CMake simplifies a lot of other aspects of the project.
+
+The Makefile is also used for some developer specific jobs like formatting using `clang-format`, cleaning up CMake files, and adding shortcuts to build using CMake.
