@@ -9,11 +9,12 @@ int main() {
     if (!init_lib(log)) exit(1);
 
     Window window("Hemline Havoc", log, 1920, 1080);
+    // Window window("Hemline Havoc", log, 1280, 720);
     if (!window) exit(1);
 
     // texture from a file
     Texture logo = window.create_texture("assets/logo.png");
-	Texture pants = window.create_texture("assets/pants.png");
+	Texture pants = window.create_texture("assets/pants_idle.png");
 
     // create texture
     // uint32_t* pixels =
@@ -43,9 +44,11 @@ int main() {
 		animation_diff += delta_time;
 		if (animation_diff > 200.0) {
 			animation_diff = 0.0;
-			if (src.x != 288) src.x += 32;
+			if (src.x != 160) src.x += 32;
 			else src.x = 0;
 		}
+
+        window.update_events();
 		if (kbd_state[SDL_SCANCODE_W])
 			pos.y -= 0.05 * delta_time;
 		if (kbd_state[SDL_SCANCODE_S])
@@ -55,13 +58,15 @@ int main() {
 		if (kbd_state[SDL_SCANCODE_D])
 			pos.x += 0.05 * delta_time;
 
-        window.update_events();
-
         window.clear();
         window.draw_texture(logo, {10.0, 10.0, 240.0, 135.0},
                             {0, 0, logo.get_width(), logo.get_height()});
 
         window.draw_texture(pants, pos, src, SDL_FLIP_NONE);
+        window.draw_texture(pants, {pos.x + 32, pos.y - 32, 32, 32}, {src.x, src.y+32, src.w, src.h}, SDL_FLIP_NONE);
+        window.draw_texture(pants, {pos.x + 64, pos.y, 32, 32}, {src.x, src.y+64, src.w, src.h}, SDL_FLIP_NONE);
+        window.draw_texture(pants, {pos.x + 32, pos.y + 32, 32, 32}, {src.x, src.y+96, src.w, src.h}, SDL_FLIP_NONE);
+
         window.render();
     } while (window);
 

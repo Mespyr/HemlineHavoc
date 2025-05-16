@@ -1,7 +1,7 @@
 #include "window.hpp"
 
 void Window::clear() {
-    SDL_SetRenderDrawColor(renderer.get(), 20, 20, 20, 255);
+    SDL_SetRenderDrawColor(renderer.get(), 40, 40, 40, 255);
     SDL_RenderClear(renderer.get());
 }
 

@@ -43,7 +43,7 @@ void Window::create_scanline_texture() {
     SDL_SetRenderTarget(renderer.get(), scanline_texture.get());
     SDL_SetRenderDrawColor(renderer.get(), 0xFF, 0xFF, 0xFF, 0x00);
     SDL_RenderFillRect(renderer.get(), nullptr);
-    SDL_SetRenderDrawColor(renderer.get(), 0, 0, 0, 0x33);
+    SDL_SetRenderDrawColor(renderer.get(), 0, 0, 0, 0x20);
     for (uint32_t i = 0; i < GAME_HEIGHT; i += 2)
         SDL_RenderLine(renderer.get(), 0, i, GAME_WIDTH, i);
     // reset renderer target, now ready to draw frames
